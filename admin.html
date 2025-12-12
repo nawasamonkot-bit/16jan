@@ -1,94 +1,24 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>Admin Panel</title>
-<style>
-  body {
-    font-family: Arial;
-    padding: 20px;
-  }
-  button {
-    padding: 10px 15px;
-    font-size: 16px;
-    margin: 10px 0;
-    cursor: pointer;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  table, th, td {
-    border: 1px solid #ccc;
-  }
-  th, td {
-    padding: 8px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Admin – รีเซ็ตนัมเบอร์</title>
 </head>
 <body>
+  <h2>หน้า Admin</h2>
 
-<h2>Admin Panel</h2>
+  <button onclick="resetNumber()" style="padding:10px 20px; font-size:18px;">
+    🔄 รีเซ็ตนัมเบอร์
+  </button>
 
-<button id="resetNumberBtn">รีเซ็ตนัมเบอร์</button>
-<p id="resetStatus"></p>
-<button onclick="loadData()">โหลดข้อมูลจาก Sheet</button>
+  <p>เลขล่าสุด: <span id="lastNum">กำลังโหลด...</span></p>
 
-<div id="result"></div>
-
-<script>
-const SHEET_URL = "https://sheet.best/api/sheets/3718a053-334f-47be-b078-8467307e2bd6"; 
-
-//----------------------------------------------------
-// 🧹 ปุ่มรีเซ็ต lastNumber บนอุปกรณ์นี้
-//----------------------------------------------------
-function resetNumber() {
-  if (!confirm("ต้องการรีเซ็ตเลขรันทั้งหมดหรือไม่?")) return;
-
-  localStorage.removeItem("lastNumber");
-  alert("รีเซ็ตเลขรันเรียบร้อยแล้ว!");
-}
-
-//----------------------------------------------------
-// 📄 โหลดข้อมูลทั้งหมดจาก sheet.best
-//----------------------------------------------------
-async function loadData() {
-  document.getElementById("result").innerHTML = "กำลังโหลดข้อมูล...";
-
-  try {
-    const res = await fetch(SHEET_URL);
-    const data = await res.json();
-
-    if (data.length === 0) {
-      document.getElementById("result").innerHTML = "ยังไม่มีข้อมูล";
-      return;
-    }
-
-    let html = "<table><tr><th>ชื่อ</th><th>เลขรัน</th><th>วันเวลา</th><th>Device</th><th>IP</th></tr>";
-
-    data.forEach(row => {
-      html += `
-        <tr>
-          <td>${row.name}</td>
-          <td>${row.number}</td>
-          <td>${row.date}</td>
-          <td>${row.device}</td>
-          <td>${row.ip}</td>
-        </tr>
-      `;
+  <script src="script.js"></script>
+  <script>
+    // แสดงเลขล่าสุดในหน้า Admin
+    getLastNumber().then(n => {
+      document.getElementById("lastNum").innerText = String(n).padStart(3, "0");
     });
-
-    html += "</table>";
-
-    document.getElementById("result").innerHTML = html;
-
-  } catch (err) {
-    console.error(err);
-    document.getElementById("result").innerHTML = "โหลดข้อมูลไม่สำเร็จ";
-  }
-}
-</script>
-
+  </script>
 </body>
 </html>
