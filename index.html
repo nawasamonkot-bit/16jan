@@ -9,14 +9,14 @@
   body {
     font-family: Arial, sans-serif;
     padding: 20px;
-    background: #f0f0f0;
+    background: linear-gradient(to right, #654897, #a88cd8);
   }
 
   #container {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 400px;
     margin: auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
@@ -24,8 +24,11 @@
   input, button {
     padding: 12px;
     margin: 10px 0;
-    width: 100%;
-    font-size: 1rem;
+    width: 90%;
+    font-size: 16px;
+    border-radius: 10px;
+    
+  
   }
 
   canvas {
@@ -38,6 +41,13 @@
   #downloadBtn {
     display: none;
   }
+  
+  #generateBtn {
+    background-color: #351E5D;
+    color: #fff;
+    border-radius: 30px;
+    align-items: center;
+  }
 
   /* Mobile responsive */
   @media (max-width: 480px) {
@@ -45,17 +55,19 @@
     #container { padding: 15px; }
     input, button { font-size: 0.9rem; }
   }
+
+ 
 </style>
 
 </head>
 <body>
 
 <div id="container">
-  <h2>สร้างเกียรติบัตร</h2>
+  <h2>กรอกชื่อเพื่อรับเกียรติบัตร</h2>
 
   <input type="text" id="nameInput" placeholder="กรอกชื่อของคุณ">
 
-  <button onclick="generateCert()">สร้างพรีวิว</button>
+  <button id="generateBtn" onclick="generateCert()">สร้างเกียรติบัตร</button>
   <button id="downloadBtn" onclick="downloadCert()">ดาวน์โหลด PNG</button>
 
   <!-- Canvas จริง -->
