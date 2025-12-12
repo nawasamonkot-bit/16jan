@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สร้างเกียรติบัตร</title>
+<style>
+body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+#container { background: #fff; padding: 20px; border-radius: 10px; max-width: 500px; margin: auto; }
+input, button { padding: 10px; margin: 10px 0; width: 100%; }
+canvas { display: block; margin-top: 20px; border:1px solid #ccc; }
+#downloadBtn { display: none; } /* ซ่อนปุ่มดาวน์โหลดก่อนพรีวิว */
+</style>
+</head>
+<body>
+<div id="container">
+  <h2>สร้างเกียรติบัตร</h2>
+  <input type="text" id="nameInput" placeholder="กรอกชื่อของคุณ" />
+  <button onclick="generateCert()">สร้างพรีวิว</button>
+  <button id="downloadBtn" onclick="downloadCert()">ดาวน์โหลด PNG</button>
+  <canvas id="certCanvas" width="800" height="600"></canvas>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
