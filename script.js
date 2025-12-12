@@ -1,4 +1,4 @@
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbyQsup9D7aiBQ-S_MOurmqVEyYlPrM1zumL8_zm4AG-c475z6UAVbEg7qq5i8HJCzhEZg/exec"; // ใส่ URL Apps Script
+const SHEET_URL = "https://api.sheetbest.com/sheets/3718a053-334f-47be-b078-8467307e2bd6"; // ใส่ URL Apps Script
 
 // สร้างเลขรันง่าย ๆ
 let lastNumber = parseInt(localStorage.getItem("lastNumber") || "0");
@@ -75,3 +75,4 @@ function downloadCert() {
   link.href = canvas.toDataURL();
   link.click();
 }
+
