@@ -1,14 +1,9 @@
-<button onclick="resetNumber()">รีเซ็ตเลขรัน</button>
+<h2>Admin Panel</h2>
+<button onclick="resetNumber()">🔄 รีเซ็ตเลขรัน</button>
 
 <script>
 function resetNumber() {
-  fetch("https://script.google.com/macros/s/AKfycbx5hTnbEknXUA3n9JU6FOtyzDH7rfiQqCZ4GSUkCpINC2jU2KcpOz1zE-Hus6MjRvJRug/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "reset" })
-  })
-  .then(res => res.json())
-  .then(data => alert("รีเซ็ตสำเร็จ"))
-  .catch(err => alert("รีเซ็ตไม่สำเร็จ"));
+  localStorage.setItem("lastNumber", "0");
+  alert("รีเซ็ตเลขรันกลับเป็น 000 แล้วค่ะ");
 }
 </script>
