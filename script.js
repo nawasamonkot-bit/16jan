@@ -1,5 +1,5 @@
 // ✅ URL sheet.best ที่ถูกต้อง
-const SHEET_URL = "https://sheet.best/api/sheets/3718a053-334f-47be-b078-8467307e2bd6";
+const SHEET_URL = "https://api.sheetbest.com/sheets/3718a053-334f-47be-b078-8467307e2bd6";
 
 // สร้างเลขรันง่าย ๆ
 let lastNumber = parseInt(localStorage.getItem("lastNumber") || "0");
@@ -88,3 +88,4 @@ function downloadCert() {
   link.href = canvas.toDataURL();
   link.click();
 }
+
