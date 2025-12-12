@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin – รีเซ็ตนัมเบอร์</title>
-</head>
-<body>
-  <h2>หน้า Admin</h2>
+<button onclick="resetNumber()">รีเซ็ตเลขรัน</button>
 
-  <button onclick="resetNumber()" style="padding:10px 20px; font-size:18px;">
-    🔄 รีเซ็ตนัมเบอร์
-  </button>
-
-  <p>เลขล่าสุด: <span id="lastNum">กำลังโหลด...</span></p>
-
-  <script src="script.js"></script>
-  <script>
-    // แสดงเลขล่าสุดในหน้า Admin
-    getLastNumber().then(n => {
-      document.getElementById("lastNum").innerText = String(n).padStart(3, "0");
-    });
-  </script>
-</body>
-</html>
+<script>
+function resetNumber() {
+  fetch("https://script.google.com/macros/s/AKfycbx5hTnbEknXUA3n9JU6FOtyzDH7rfiQqCZ4GSUkCpINC2jU2KcpOz1zE-Hus6MjRvJRug/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "reset" })
+  })
+  .then(res => res.json())
+  .then(data => alert("รีเซ็ตสำเร็จ"))
+  .catch(err => alert("รีเซ็ตไม่สำเร็จ"));
+}
+</script>
