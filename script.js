@@ -1,4 +1,5 @@
-const SHEET_URL = "https://api.sheetbest.com/sheets/3718a053-334f-47be-b078-8467307e2bd6"; // ใส่ URL Apps Script
+// ✅ URL sheet.best ที่ถูกต้อง
+const SHEET_URL = "https://sheet.best/api/sheets/3718a053-334f-47be-b078-8467307e2bd6";
 
 // สร้างเลขรันง่าย ๆ
 let lastNumber = parseInt(localStorage.getItem("lastNumber") || "0");
@@ -22,14 +23,25 @@ async function generateCert() {
   // แสดงปุ่มดาวน์โหลดหลังพรีวิว
   document.getElementById("downloadBtn").style.display = "block";
 
-  // ส่งข้อมูลไป Google Sheet
+  // ดึง IP แบบปลอดภัย
+  let ip = "unknown";
   try {
-    const ipData = await fetch('https://api.ipify.org?format=json').then(r=>r.json());
+    const ipRes = await fetch("https://api.ipify.org?format=json");
+    const ipData = await ipRes.json();
+    ip = ipData.ip;
+  } catch (e) {
+    console.warn("ดึง IP ไม่สำเร็จ");
+  }
+
+  // ส่งข้อมูลไป sheet.best
+  try {
     const data = {
-      name, number, dateTH,
+      name,
+      number,
+      date: dateTH,
       device: navigator.platform,
       userAgent: navigator.userAgent,
-      ip: ipData.ip
+      ip
     };
 
     await fetch(SHEET_URL, {
@@ -50,7 +62,8 @@ function drawCertificate(name, number, dateTH) {
   const canvas = document.getElementById("certCanvas");
   const ctx = canvas.getContext("2d");
   const bg = new Image();
-  bg.src = "certificate.png"; // รูปเกียรติบัตร
+  bg.src = "certificate.png";
+
   bg.onload = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
@@ -75,4 +88,3 @@ function downloadCert() {
   link.href = canvas.toDataURL();
   link.click();
 }
-
