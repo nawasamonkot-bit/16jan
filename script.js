@@ -110,16 +110,13 @@ function downloadCert() {
 // =======================================
 // 🔥 ฟังก์ชันนี้สำหรับหน้า admin.html เท่านั้น
 // =======================================
-async function resetNumber() {
-  if (!confirm("ต้องการรีเซ็ตเลขรันกลับเป็น 000 ใช่ไหม?")) return;
+async function resetData() {
+  if (!confirm("ต้องการรีเซ็ตข้อมูลและเลขลำดับทั้งหมดหรือไม่?")) return;
 
-  await fetch(SHEET_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "reset" })
-  });
-
-  alert("รีเซ็ตเลขรันเรียบร้อย ✔");
+  const res = await fetch(API_URL + "?reset=1");
+  const text = await res.text();
+  alert(text);
 }
+
 
 
