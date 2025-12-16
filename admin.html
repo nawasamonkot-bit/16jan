@@ -1,9 +1,17 @@
-<h2>Admin Panel</h2>
-<button onclick="resetNumber()">🔄 รีเซ็ตเลขรัน</button>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
 
-<script>
-function resetNumber() {
-  localStorage.setItem("lastNumber", "0");
-  alert("รีเซ็ตเลขรันกลับเป็น 000 แล้วค่ะ");
-}
-</script>
+<h2>Admin Panel</h2>
+
+<button onclick="resetData()">🔄 รีเซ็ตเลขรัน</button>
+
+<!-- โหลด script.js (ตัวเดียวกับหน้า index) -->
+<script src="script.js"></script>
+
+</body>
+</html>
