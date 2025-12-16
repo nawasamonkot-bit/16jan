@@ -102,25 +102,33 @@ async function generateCert() {
 function drawCertificate(name, number, dateTH) {
   const canvas = document.getElementById("certCanvas");
   const ctx = canvas.getContext("2d");
+  
 
   const bg = new Image();
   bg.src = "certificate.jpg";
 
-  bg.onload = function () {
+  bg.onload = async function () {
+    // ✅ รอให้ font โหลดก่อน
+    await document.fonts.ready;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 
-    ctx.font = "50px THSarabunNew";
-    ctx.fillStyle = "#b76f1b";
-    ctx.textAlign = "center";
-    ctx.fillText(name, canvas.width / 2, 350);
+// ===== ชื่อผู้รับ (ขยับขึ้น) =====
+ctx.font = "700 48px 'IBM Plex Sans Thai'";
+ctx.fillStyle = "#b76f1b";
+ctx.textAlign = "center";
+ctx.fillText(name, canvas.width / 2, 280); // จาก 350 → 300
 
-    ctx.font = "32px THSarabunNew";
-    ctx.textAlign = "left";
-    ctx.fillText(number, 50, 550);
-    ctx.fillText(dateTH, 50, 590);
+// ===== เลขที่ (ฝั่งขวา) =====
+ctx.font = "22px 'Roboto'";
+ctx.textAlign = "right";
+ctx.fillStyle = "#b76f1b";
+ctx.fillText(number, canvas.width - 40, 588); // ชิดขวา
+
   };
 }
+
 
 // =======================================
 // ⬇ ดาวน์โหลดเกียรติบัตร PNG
@@ -161,6 +169,5 @@ async function resetData() {
     console.error(err);
   }
 }
-
 
 
