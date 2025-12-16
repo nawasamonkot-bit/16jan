@@ -111,7 +111,7 @@ function drawCertificate(name, number, dateTH) {
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 
     ctx.font = "50px THSarabunNew";
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#b76f1b";
     ctx.textAlign = "center";
     ctx.fillText(name, canvas.width / 2, 350);
 
@@ -161,5 +161,6 @@ async function resetData() {
     console.error(err);
   }
 }
+
 
 
