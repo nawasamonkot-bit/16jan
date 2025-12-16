@@ -6,26 +6,32 @@ const SHEET_URL = "https://api.sheetbest.com/sheets/3718a053-334f-47be-b078-8467
 // =======================================
 // ✅ อ่านเลขล่าสุด (รองรับ RESET)
 // =======================================
+// =======================================
+// ✅ อ่านเลขล่าสุด (รองรับ RESET ถูกต้อง)
+// =======================================
 async function getLastNumber() {
   const res = await fetch(SHEET_URL);
   const rows = await res.json();
   if (rows.length === 0) return 0;
 
-  // 1) ถ้ามี RESET ให้เริ่มใหม่
+  // 1) หา index ของ RESET ล่าสุด
+  let lastResetIndex = -1;
   for (let i = rows.length - 1; i >= 0; i--) {
     if (rows[i].name === "__RESET__") {
-      return 0;
+      lastResetIndex = i;
+      break;
     }
   }
 
-  // 2) หาเลขล่าสุดจริง
-  for (let i = rows.length - 1; i >= 0; i--) {
+  // 2) หาเลขล่าสุด หลัง RESET
+  for (let i = rows.length - 1; i > lastResetIndex; i--) {
     const n = parseInt(rows[i].number);
     if (!isNaN(n)) return n;
   }
 
   return 0;
 }
+
 
 // =======================================
 // ✅ สร้างเลขรันใหม่
@@ -155,4 +161,5 @@ async function resetData() {
     console.error(err);
   }
 }
+
 
