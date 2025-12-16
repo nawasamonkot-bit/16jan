@@ -98,7 +98,7 @@ function drawCertificate(name, number, dateTH) {
   const ctx = canvas.getContext("2d");
 
   const bg = new Image();
-  bg.src = "certificate.png";
+  bg.src = "certificate.jpg";
 
   bg.onload = function () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -122,7 +122,7 @@ function drawCertificate(name, number, dateTH) {
 function downloadCert() {
   const canvas = document.getElementById("certCanvas");
   const link = document.createElement("a");
-  link.download = "certificate.png";
+  link.download = "certificate.jpg";
   link.href = canvas.toDataURL();
   link.click();
 }
@@ -155,3 +155,4 @@ async function resetData() {
     console.error(err);
   }
 }
+
