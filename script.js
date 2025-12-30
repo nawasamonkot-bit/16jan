@@ -16,7 +16,7 @@ function hideLoading() {
   const modal = document.getElementById("loadingModal");
   if (modal) modal.style.display = "none";
 }
-
+function toThaiNumber(input) { const thai = ["๐","๑","๒","๓","๔","๕","๖","๗","๘","๙"]; return input.toString().replace(/\d/g, d => thai[d]); }
 // ปิด loading แน่นอนตอนรีเฟรชหน้า
 document.addEventListener("DOMContentLoaded", hideLoading);
 
@@ -76,9 +76,10 @@ function drawCertificate(name, number) {
       ctx.fillText(name, canvas.width / 2, 280);
 
       // เลขที่
+      const numberThai = toThaiNumber(number);
       ctx.font = "22px 'Roboto'";
       ctx.textAlign = "right";
-      ctx.fillText(number, canvas.width - 40, 588);
+      ctx.fillText(numberThai, canvas.width - 130, 70);
 
       resolve();
     };
