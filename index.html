@@ -84,29 +84,41 @@ display=swap" rel="stylesheet">
     input, button { font-size: 0.9rem; }
   } 
 
-  #loadingModal {
-  display: none;
+ #loadingModal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 9999;
-  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;              /* ซ่อนตอนเริ่ม */
   justify-content: center;
+  align-items: center;
+  z-index: 99999;             /* ให้อยู่บนสุด */
 }
 
 .loading-box {
   background: white;
-  padding: 30px 40px;
-  border-radius: 16px;
+  padding: 30px 50px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,.25);
-  animation: pop .25s ease-out;
+  font-size: 20px;
+  font-family: "IBM Plex Sans Thai", sans-serif;
 }
 
-.loading-box p {
-  margin-top: 15px;
-  font-weight: 500;
+/* spinner หมุน */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ddd;
+  border-top: 5px solid #b76f1b;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  animation: spin 1s linear infinite;
 }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 
 .spinner {
   width: 48px;
