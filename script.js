@@ -59,7 +59,7 @@ async function generateCert() {
   // บังคับให้ browser วาด modal ก่อน
   await new Promise(resolve => setTimeout(resolve, 50));
 
-  const MIN_LOADING_TIME = 3500; // อย่างน้อย 1.5 วินาที
+  const MIN_LOADING_TIME = 1500; // อย่างน้อย 1.5 วินาที
   const startTime = Date.now();
 
   try {
@@ -91,5 +91,6 @@ async function generateCert() {
     console.error(err);
   }
 }
+
 
 
