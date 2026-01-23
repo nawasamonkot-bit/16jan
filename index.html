@@ -22,16 +22,16 @@ display=swap" rel="stylesheet">
   body {
     font-family: 'IBM Plex Sans Thai',Arial, sans-serif;
     padding: 20px;
-    background: linear-gradient(to right, #654897, #a88cd8);
+    background: linear-gradient(to right, #5ac5ff, #9bcde7);
     
     
   }
 
   #container {
-    background: #fff;
+    background: #ffffffb6;
     padding: 20px;
     border-radius: 10px;
-    max-width: 400px;
+    max-width: 700px;
     margin: auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     justify-items: center;
@@ -56,7 +56,7 @@ display=swap" rel="stylesheet">
 
   #downloadBtn {
     display: none;
-    background: linear-gradient(to right, #4E2F83, #4F3AC5 ) ;
+    background: linear-gradient(to right, #2fb2f8, #a6d9f5 ) ;
     color: #fff;
     border-radius: 30px;
     align-items: center;
@@ -67,7 +67,7 @@ display=swap" rel="stylesheet">
   }
   
   #generateBtn {
-    background: linear-gradient(to right, #4E2F83, #4F3AC5 );
+    background: linear-gradient(to right, #2fb2f8, #a6d9f5);
     color: #fff;
     border-radius: 30px;
     align-items: center;
@@ -124,7 +124,7 @@ display=swap" rel="stylesheet">
   width: 48px;
   height: 48px;
   border: 5px solid #e0e0e0;
-  border-top-color: #351E5D;
+  border-top-color: #2083f3;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 10px auto;
@@ -204,7 +204,11 @@ display=swap" rel="stylesheet">
 <body>
 
 <div id="container">
-  <h2 id="title">กรอกชื่อเพื่อรับเกียรติบัตร</h2>
+  <h1 id="title" style="color: #002265;">วันครู ครั้งที่ 70 พ.ศ. 2569</h1>
+  <h2 id="title" style="color: #002265;  ">"พระผู้ทรงเป็นแม่และครูแห่งแผ่นดิน"</h2>
+  <h3 id="title" style="font-size: 20px; " 
+  >กรอกชื่อเพื่อรับเกียรติบัตรการเข้าร่วมงานวันครู ครั้งที่ 70 </h3>
+  <h4 id="title" style="color: #c90d0d; font-style: italic; ">สงวนเฉพาะผู้ที่ลงทะเบียนเข้าร่วมงานวันครูครั้งที่ 70 เท่านั้น </h4>
 
 
   <input type="text" id="nameInput" placeholder="กรอกชื่อของคุณ">
@@ -218,6 +222,7 @@ display=swap" rel="stylesheet">
   <!--ป-->
   <button id="downloadBtn" onclick="downloadCert()" style="display: none;" > ดาวน์โหลดเกียรติบัตร</button>
 </div>
+
 
 <script src="script.js"></script>
 
