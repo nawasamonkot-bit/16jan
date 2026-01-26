@@ -27,6 +27,7 @@ function drawCertificate(name) {
     bg.onerror = () => reject("โหลดภาพ certificate.jpg ไม่สำเร็จ");
   });
 }
+
 function showLoading() {
   const modal = document.getElementById("loadingModal");
   if (modal) modal.style.display = "flex";
@@ -45,13 +46,21 @@ async function generateCert() {
   const nameInput = document.getElementById("nameInput");
   const generateBtn = document.getElementById("generateBtn");
   const downloadBtn = document.getElementById("downloadBtn");
-  const title = document.getElementById("title");
+  const canvas = document.getElementById("certCanvas");
+
+  // 🔥 กล่องข้อความ
+  const introText = document.getElementById("introText");
+  const successText = document.getElementById("successText");
 
   const name = nameInput.value.trim();
   if (!name) {
     alert("กรุณากรอกชื่อ");
     return;
   }
+
+  // 🔥 ซ่อนทุกอย่างก่อนเริ่ม
+  canvas.style.display = "none";
+  successText.style.display = "none";
 
   // 🔥 แสดง Loading
   showLoading();
@@ -63,7 +72,7 @@ async function generateCert() {
   const startTime = Date.now();
 
   try {
-    // วาดใบเซอร์
+    // วาดใบเซอร์ (ยังไม่โชว์)
     await drawCertificate(name);
 
     // ⏳ คำนวณเวลาที่ใช้ไป
@@ -79,8 +88,16 @@ async function generateCert() {
     // 🔥 ซ่อน Loading
     hideLoading();
 
-    // ปรับหน้าจอหลังสร้างเสร็จ
-    title.innerText = "สร้างเรียบร้อยแล้ว !";
+    // 🔥 ซ่อนข้อความหน้าแรกทั้งหมด
+    if (introText) introText.style.display = "none";
+
+    // 🔥 แสดงเฉพาะข้อความ “สร้างเรียบร้อยแล้ว !”
+    successText.style.display = "block";
+
+    // 🔥 โชว์ใบเซอร์
+    canvas.style.display = "block";
+
+    // 🔥 ปรับปุ่ม / ช่องกรอก
     nameInput.style.display = "none";
     generateBtn.style.display = "none";
     downloadBtn.style.display = "block";
@@ -93,4 +110,25 @@ async function generateCert() {
 }
 
 
+// =======================================
+// ⬇️ ดาวน์โหลดใบเกียรติบัตร
+// =======================================
+function downloadCert() {
+  const canvas = document.getElementById("certCanvas");
 
+  // แปลง canvas เป็นไฟล์รูป
+  const dataURL = canvas.toDataURL("image/png");
+
+  // สร้างลิงก์ดาวน์โหลดอัตโนมัติ
+  const link = document.createElement("a");
+  link.href = dataURL;
+
+  // ตั้งชื่อไฟล์ (ใช้ชื่อผู้รับเกียรติบัตร)
+  const name = document.getElementById("nameInput").value.trim();
+  link.download = `เกียรติบัตร_${name || "certificate"}.png`;
+
+  // คลิกอัตโนมัติ
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
